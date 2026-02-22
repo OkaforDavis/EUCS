@@ -1,12 +1,3 @@
-node_modules/
-.env
-.env.local
-logs/
-*.log
-uploads/*
-!uploads/.gitkeep
 .DS_Store
-*.swp
-coverage/
-dist/
-build/
+Thumbs.db
+*.log
