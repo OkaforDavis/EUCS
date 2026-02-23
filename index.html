@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Elugwu Umuoshie Co-operative Society - Secure Financial Management System">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.paystack.co https://api.flutterwave.com;">
+    <title>Elugwu Umuoshie Co-operative Society Ltd - Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="ect-sysldr-overlay-9x4k" class="ect-loading-screen">
+        <div class="ect-loader-container">
+            <div class="ect-tree-logo-anim">
+                <svg viewBox="0 0 200 200" class="ect-logo-svg">
+                    <circle class="ect-logo-circle" cx="100" cy="100" r="80" />
+                    <path class="ect-logo-tree" d="M100,140 Q90,120 100,100 Q110,120 100,140 M100,100 Q80,110 60,100 Q80,90 100,100 M100,100 Q120,110 140,100 Q120,90 100,100 M100,100 L100,60 M85,75 Q100,65 115,75" />
+                </svg>
+            </div>
+            <p class="ect-loading-text">Securing Your Connection...</p>
+        </div>
+    </div>
+
+    <!-- Login Container -->
+    <div id="ect-auth-container-7h2m" class="ect-auth-wrapper">
+        <div class="ect-auth-glass-panel">
+            <div class="ect-auth-header">
+                <div class="ect-logo-container">
+                    <div class="ect-logo-circle-wrap">
+                        <svg viewBox="0 0 200 200" class="ect-main-logo">
+                            <defs>
+                                <linearGradient id="ect-grad-leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#6BA368;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#3D7C3A;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="85" fill="none" stroke="url(#ect-grad-leaf)" stroke-width="3" opacity="0.3"/>
+                            <path d="M100,140 Q90,120 100,95 Q110,120 100,140 M100,95 Q75,105 55,95 Q75,85 100,95 M100,95 Q125,105 145,95 Q125,85 100,95 M100,95 L100,50 M80,70 Q100,55 120,70 M70,85 L75,80 M130,85 L125,80" fill="url(#ect-grad-leaf)" stroke="url(#ect-grad-leaf)" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="ect-auth-title">Elugwu Umuoshie Co-operative Society Ltd</h1>
+                <p class="ect-auth-subtitle">Building Prosperity Together</p>
+            </div>
+
+            <form id="ect-login-form-8k3p" class="ect-auth-form">
+                <div class="ect-form-group">
+                    <label for="ect-input-member-id-5n7q" class="ect-form-label">Member ID</label>
+                    <input type="text" id="ect-input-member-id-5n7q" class="ect-form-input" placeholder="Enter your member ID" autocomplete="username" required>
+                    <span class="ect-input-focus-line"></span>
+                </div>
+
+                <div class="ect-form-group">
+                    <label for="ect-input-password-2t9r" class="ect-form-label">Password</label>
+                    <div class="ect-password-wrapper">
+                        <input type="password" id="ect-input-password-2t9r" class="ect-form-input" placeholder="Enter your password" autocomplete="current-password" required>
+                        <button type="button" class="ect-toggle-password" id="ect-btn-toggle-pwd-4m8k">
+                            <svg class="ect-eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="ect-input-focus-line"></span>
+                </div>
+
+                <div class="ect-form-group ect-checkbox-group">
+                    <label class="ect-checkbox-label">
+                        <input type="checkbox" id="ect-check-remember-6p2w" class="ect-checkbox-input">
+                        <span class="ect-checkbox-custom"></span>
+                        <span class="ect-checkbox-text">Remember me</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="ect-btn-primary ect-btn-login" id="ect-btn-submit-login-3x5v">
+                    <span class="ect-btn-text">Access Dashboard</span>
+                    <span class="ect-btn-loading">
+                        <span class="ect-spinner"></span>
+                    </span>
+                </button>
+
+                <div class="ect-auth-footer">
+                    <a href="#" class="ect-link-forgot" id="ect-link-forgot-pwd-1w9z">Forgot password?</a>
+                    <a href="#" class="ect-link-register" id="ect-link-new-member-7y4x">New member registration</a>
+                </div>
+            </form>
+
+            <div class="ect-security-badge">
+                <svg class="ect-shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <span>Bank-Grade 256-bit Encryption</span>
+            </div>
+        </div>
+
+        <div class="ect-auth-bg-decoration">
+            <div class="ect-floating-leaf ect-leaf-1"></div>
+            <div class="ect-floating-leaf ect-leaf-2"></div>
+            <div class="ect-floating-leaf ect-leaf-3"></div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="ect-dashboard-main-2k8p" class="ect-dashboard-container" style="display: none;">
+        <!-- Sidebar Navigation -->
+        <aside class="ect-sidebar-nav" id="ect-sidebar-panel-5t3m">
+            <div class="ect-sidebar-header">
+                <div class="ect-sidebar-logo">
+                    <svg viewBox="0 0 50 50" class="ect-sidebar-logo-svg">
+                        <circle cx="25" cy="25" r="20" fill="none" stroke="#6BA368" stroke-width="1.5"/>
+                        <path d="M25,35 Q22.5,30 25,23.75 Q27.5,30 25,35 M25,23.75 Q18.75,26.25 13.75,23.75 Q18.75,21.25 25,23.75 M25,23.75 Q31.25,26.25 36.25,23.75 Q31.25,21.25 25,23.75 M25,23.75 L25,12.5 M20,17.5 Q25,13.75 30,17.5" fill="#6BA368" stroke="#6BA368" stroke-width="1"/>
+                    </svg>
+                </div>
+                <button class="ect-sidebar-toggle" id="ect-btn-toggle-sidebar-9w4n">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M3 12h18M3 6h18M3 18h18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="ect-sidebar-menu">
+                <a href="#" class="ect-nav-item active" data-view="overview" id="ect-nav-overview-8p2k">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    <span class="ect-nav-text">Overview</span>
+                </a>
+
+                <a href="#" class="ect-nav-item" data-view="contributions" id="ect-nav-contrib-3t7m">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <span class="ect-nav-text">Contributions</span>
+                </a>
+
+                <a href="#" class="ect-nav-item" data-view="loans" id="ect-nav-loans-6m9w">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 3v4M8 3v4"/>
+                    </svg>
+                    <span class="ect-nav-text">Loans</span>
+                </a>
+
+                <a href="#" class="ect-nav-item" data-view="withdrawals" id="ect-nav-withdraw-4k2p">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <span class="ect-nav-text">Withdrawals</span>
+                </a>
+
+                <a href="#" class="ect-nav-item" data-view="members" id="ect-nav-members-7n3x">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span class="ect-nav-text">Members</span>
+                </a>
+
+                <a href="#" class="ect-nav-item" data-view="chat" id="ect-nav-chat-5w8p">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="ect-nav-text">Live Chat</span>
+                    <span class="ect-chat-badge" id="ect-badge-unread-9m2k">3</span>
+                </a>
+
+                <a href="#" class="ect-nav-item" data-view="reports" id="ect-nav-reports-2p5t">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    <span class="ect-nav-text">Reports</span>
+                </a>
+
+                <div class="ect-nav-divider"></div>
+
+                <a href="#" class="ect-nav-item" data-view="settings" id="ect-nav-settings-8t4w">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m6-12h-6m-6 0H1m6 6h6m6 0h6"/>
+                    </svg>
+                    <span class="ect-nav-text">Settings</span>
+                </a>
+            </nav>
+
+            <div class="ect-sidebar-footer">
+                <div class="ect-user-profile-mini" id="ect-user-mini-profile-3k7m">
+                    <div class="ect-user-avatar">
+                        <span class="ect-avatar-text">AM</span>
+                    </div>
+                    <div class="ect-user-info">
+                        <p class="ect-user-name">Admin User</p>
+                        <p class="ect-user-role">Administrator</p>
+                    </div>
+                </div>
+                <button class="ect-btn-logout" id="ect-btn-logout-panel-6w9p">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="ect-main-content" id="ect-content-area-4m7k">
+            <!-- Top Header Bar -->
+            <header class="ect-top-header">
+                <div class="ect-header-left">
+                    <button class="ect-mobile-menu-toggle" id="ect-btn-mobile-menu-2k5w">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 12h18M3 6h18M3 18h18"/>
+                        </svg>
+                    </button>
+                    <h2 class="ect-page-title" id="ect-dynamic-page-title-7p3m">Dashboard Overview</h2>
+                </div>
+                <div class="ect-header-right">
+                    <div class="ect-search-container">
+                        <svg class="ect-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" class="ect-search-input" placeholder="Search members, transactions..." id="ect-input-global-search-5n2p">
+                    </div>
+                    <button class="ect-notification-btn" id="ect-btn-notifications-8w4k">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        <span class="ect-notification-dot"></span>
+                    </button>
+                    <div class="ect-user-menu" id="ect-dropdown-user-menu-9k2m">
+                        <button class="ect-user-menu-trigger">
+                            <div class="ect-header-avatar">
+                                <span>AM</span>
+                            </div>
+                            <svg class="ect-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="ect-user-dropdown" id="ect-dropdown-panel-3t8w">
+                            <a href="#" class="ect-dropdown-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                My Profile
+                            </a>
+                            <a href="#" class="ect-dropdown-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M12 1v6m0 6v6"/>
+                                </svg>
+                                Account Settings
+                            </a>
+                            <div class="ect-dropdown-divider"></div>
+                            <a href="#" class="ect-dropdown-item" id="ect-dropdown-logout-7m4p">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16 17 21 12 16 7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dynamic Content Views -->
+            <div class="ect-view-container" id="ect-dynamic-views-6p9k">
+                <!-- Overview Dashboard View -->
+                <section class="ect-view-panel active" id="ect-view-overview-2m8k" data-view="overview">
+                    <div class="ect-stats-grid">
+                        <div class="ect-stat-card ect-stat-primary">
+                            <div class="ect-stat-header">
+                                <div class="ect-stat-icon-wrap">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <line x1="12" y1="1" x2="12" y2="23"/>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div class="ect-stat-trend ect-trend-up">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                        <polyline points="17 6 23 6 23 12"/>
+                                    </svg>
+                                    <span>+12.5%</span>
+                                </div>
+                            </div>
+                            <div class="ect-stat-content">
+                                <p class="ect-stat-label">Total Contributions</p>
+                                <h3 class="ect-stat-value" id="ect-stat-total-contrib-5k2p">₦12,450,000</h3>
+                                <p class="ect-stat-subtitle">From 156 active members</p>
+                            </div>
+                        </div>
+
+                        <div class="ect-stat-card ect-stat-success">
+                            <div class="ect-stat-header">
+                                <div class="ect-stat-icon-wrap">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                    </svg>
+                                </div>
+                                <div class="ect-stat-trend ect-trend-up">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                        <polyline points="17 6 23 6 23 12"/>
+                                    </svg>
+                                    <span>+8</span>
+                                </div>
+                            </div>
+                            <div class="ect-stat-content">
+                                <p class="ect-stat-label">Active Members</p>
+                                <h3 class="ect-stat-value" id="ect-stat-active-members-9w3m">156</h3>
+                                <p class="ect-stat-subtitle">8 new this month</p>
+                            </div>
+                        </div>
+
+                        <div class="ect-stat-card ect-stat-warning">
+                            <div class="ect-stat-header">
+                                <div class="ect-stat-icon-wrap">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                        <path d="M16 3v4M8 3v4"/>
+                                    </svg>
+                                </div>
+                                <div class="ect-stat-trend ect-trend-neutral">
+                                    <span>23 Active</span>
+                                </div>
+                            </div>
+                            <div class="ect-stat-content">
+                                <p class="ect-stat-label">Outstanding Loans</p>
+                                <h3 class="ect-stat-value" id="ect-stat-outstanding-loans-4p7t">₦4,280,000</h3>
+                                <p class="ect-stat-subtitle">23 active loans</p>
+                            </div>
+                        </div>
+
+                        <div class="ect-stat-card ect-stat-info">
+                            <div class="ect-stat-header">
+                                <div class="ect-stat-icon-wrap">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7 10 12 15 17 10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </div>
+                                <div class="ect-stat-trend ect-trend-down">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                                        <polyline points="17 18 23 18 23 12"/>
+                                    </svg>
+                                    <span>-5.2%</span>
+                                </div>
+                            </div>
+                            <div class="ect-stat-content">
+                                <p class="ect-stat-label">This Month's Withdrawals</p>
+                                <h3 class="ect-stat-value" id="ect-stat-withdrawals-8k3w">₦850,000</h3>
+                                <p class="ect-stat-subtitle">12 transactions processed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ect-dashboard-grid">
+                        <div class="ect-panel ect-panel-chart">
+                            <div class="ect-panel-header">
+                                <h3 class="ect-panel-title">Contribution Trends</h3>
+                                <div class="ect-period-selector" id="ect-selector-period-7m2k">
+                                    <button class="ect-period-btn active" data-period="week">Week</button>
+                                    <button class="ect-period-btn" data-period="month">Month</button>
+                                    <button class="ect-period-btn" data-period="year">Year</button>
+                                </div>
+                            </div>
+                            <div class="ect-chart-container" id="ect-chart-contributions-5n9p">
+                                <canvas id="ect-canvas-contrib-chart-3w8k"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="ect-panel ect-panel-activity">
+                            <div class="ect-panel-header">
+                                <h3 class="ect-panel-title">Recent Activity</h3>
+                                <a href="#" class="ect-link-view-all">View All</a>
+                            </div>
+                            <div class="ect-activity-list" id="ect-list-recent-activity-6k4m">
+                                <div class="ect-activity-item">
+                                    <div class="ect-activity-icon ect-icon-contribution">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ect-activity-details">
+                                        <p class="ect-activity-text"><strong>Adeyemi Olamide</strong> made a contribution</p>
+                                        <span class="ect-activity-amount">+₦20,000</span>
+                                    </div>
+                                    <span class="ect-activity-time">2 mins ago</span>
+                                </div>
+
+                                <div class="ect-activity-item">
+                                    <div class="ect-activity-icon ect-icon-loan">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ect-activity-details">
+                                        <p class="ect-activity-text"><strong>Chidinma Nwankwo</strong> loan approved</p>
+                                        <span class="ect-activity-amount">₦150,000</span>
+                                    </div>
+                                    <span class="ect-activity-time">15 mins ago</span>
+                                </div>
+
+                                <div class="ect-activity-item">
+                                    <div class="ect-activity-icon ect-icon-withdrawal">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                            <polyline points="7 10 12 15 17 10"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ect-activity-details">
+                                        <p class="ect-activity-text"><strong>Emeka Johnson</strong> withdrawal processed</p>
+                                        <span class="ect-activity-amount">-₦50,000</span>
+                                    </div>
+                                    <span class="ect-activity-time">1 hour ago</span>
+                                </div>
+
+                                <div class="ect-activity-item">
+                                    <div class="ect-activity-icon ect-icon-member">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="8.5" cy="7" r="4"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ect-activity-details">
+                                        <p class="ect-activity-text"><strong>Fatima Abdullahi</strong> joined cooperative</p>
+                                        <span class="ect-activity-badge">New Member</span>
+                                    </div>
+                                    <span class="ect-activity-time">3 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ect-quick-actions-panel">
+                        <h3 class="ect-section-title">Quick Actions</h3>
+                        <div class="ect-quick-actions-grid">
+                            <button class="ect-quick-action-btn" id="ect-btn-quick-contribution-9m3k">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="16"/>
+                                    <line x1="8" y1="12" x2="16" y2="12"/>
+                                </svg>
+                                <span>Record Contribution</span>
+                            </button>
+
+                            <button class="ect-quick-action-btn" id="ect-btn-quick-loan-5k7w">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                    <path d="M16 3v4M8 3v4"/>
+                                </svg>
+                                <span>Process Loan</span>
+                            </button>
+
+                            <button class="ect-quick-action-btn" id="ect-btn-quick-withdrawal-2p8m">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                </svg>
+                                <span>Approve Withdrawal</span>
+                            </button>
+
+                            <button class="ect-quick-action-btn" id="ect-btn-quick-member-4w9k">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="8.5" cy="7" r="4"/>
+                                    <line x1="20" y1="8" x2="20" y2="14"/>
+                                    <line x1="23" y1="11" x2="17" y2="11"/>
+                                </svg>
+                                <span>Add Member</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Other views will be dynamically loaded -->
+                <section class="ect-view-panel" id="ect-view-contributions-7m4k" data-view="contributions" style="display: none;">
+                    <!-- Contributions content -->
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-loans-3p8w" data-view="loans" style="display: none;">
+                    <!-- Loans content -->
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-withdrawals-6k2m" data-view="withdrawals" style="display: none;">
+                    <!-- Withdrawals content -->
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-members-9w5p" data-view="members" style="display: none;">
+                    <!-- Members content -->
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-chat-2k7t" data-view="chat" style="display: none;">
+                    <!-- Chat content -->
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-reports-5m3k" data-view="reports" style="display: none;">
+                    <!-- Reports content -->
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-settings-8p6w" data-view="settings" style="display: none;">
+                    <!-- Settings content -->
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification System -->
+    <div class="ect-toast-container" id="ect-toast-notification-area-4m9k"></div>
+
+    <!-- Modal Overlay -->
+    <div class="ect-modal-overlay" id="ect-modal-overlay-7k3p" style="display: none;"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
