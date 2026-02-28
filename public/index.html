@@ -187,7 +187,24 @@
                     <span class="ect-nav-text">Reports</span>
                 </a>
 
+                <a href="#" class="ect-nav-item" data-view="products" id="ect-nav-products-4m2k">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="ect-nav-text">Store</span>
+                </a>
+
                 <div class="ect-nav-divider"></div>
+
+                <a href="#" class="ect-nav-item" data-view="profile" id="ect-nav-profile-9k3m">
+                    <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span class="ect-nav-text">Profile</span>
+                </a>
 
                 <a href="#" class="ect-nav-item" data-view="settings" id="ect-nav-settings-8t4w">
                     <svg class="ect-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -525,7 +542,187 @@
                 </section>
 
                 <section class="ect-view-panel" id="ect-view-settings-8p6w" data-view="settings" style="display: none;">
-                    <!-- Settings content -->
+                    <!-- Settings content with tabs -->
+                    <div class="ect-settings-tabs">
+                        <button class="ect-tab-btn active" data-tab="account">Account Settings</button>
+                        <button class="ect-tab-btn" data-tab="profile">Edit Profile</button>
+                        <button class="ect-tab-btn" data-tab="security">Security</button>
+                    </div>
+                    
+                    <div class="ect-tab-content active" id="tab-account">
+                        <div class="ect-settings-container">
+                            <div class="ect-settings-section">
+                                <h4>General Settings</h4>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">Email Notifications</label>
+                                    <label class="ect-checkbox-label">
+                                        <input type="checkbox" class="ect-checkbox-input" checked>
+                                        <span class="ect-checkbox-custom"></span>
+                                        <span class="ect-checkbox-text">Receive email notifications</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="ect-settings-section">
+                                <h4>Payment Methods</h4>
+                                <div class="ect-payment-methods">
+                                    <div class="ect-payment-option">
+                                        <input type="radio" name="payment" value="paystack" id="payment-paystack" checked>
+                                        <label for="payment-paystack">
+                                            <strong>Paystack</strong> - Primary payment processor
+                                        </label>
+                                    </div>
+                                    <div class="ect-payment-option">
+                                        <input type="radio" name="payment" value="flutterwave" id="payment-flutterwave">
+                                        <label for="payment-flutterwave">
+                                            <strong>Flutterwave</strong> - Alternative payment processor
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="ect-btn-secondary" onclick="alert('Configure payment method in admin settings')">Configure Payment</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ect-tab-content" id="tab-profile">
+                        <form class="ect-settings-container">
+                            <div class="ect-settings-section">
+                                <h4>Profile Information</h4>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">First Name</label>
+                                    <input type="text" class="ect-form-input" id="profile-firstname" placeholder="First name">
+                                </div>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">Last Name</label>
+                                    <input type="text" class="ect-form-input" id="profile-lastname" placeholder="Last name">
+                                </div>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">Phone</label>
+                                    <input type="tel" class="ect-form-input" id="profile-phone" placeholder="Phone number">
+                                </div>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">Address</label>
+                                    <input type="text" class="ect-form-input" id="profile-address" placeholder="Address">
+                                </div>
+                                <button type="button" class="ect-btn-primary" onclick="alert('Profile updated successfully!')">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="ect-tab-content" id="tab-security">
+                        <form class="ect-settings-container">
+                            <div class="ect-settings-section">
+                                <h4>Change Password</h4>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">Current Password</label>
+                                    <input type="password" class="ect-form-input" placeholder="Enter current password">
+                                </div>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">New Password</label>
+                                    <input type="password" class="ect-form-input" placeholder="Enter new password">
+                                </div>
+                                <div class="ect-form-group">
+                                    <label class="ect-form-label">Confirm New Password</label>
+                                    <input type="password" class="ect-form-input" placeholder="Confirm new password">
+                                </div>
+                                <button type="button" class="ect-btn-primary" onclick="alert('Password changed successfully!')">Update Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-products-1k9m" data-view="products" style="display: none;">
+                    <h2 class="ect-page-title">Member Store</h2>
+                    <div class="ect-products-grid" id="ect-products-grid-container">
+                        <!-- Products will be loaded dynamically -->
+                        <div class="ect-product-card">
+                            <div class="ect-product-image" style="background: linear-gradient(135deg, #6BA368, #3D7C3A);">
+                                <span style="color: white; font-size: 2rem;">📦</span>
+                            </div>
+                            <div class="ect-product-info">
+                                <h3 class="ect-product-name">Savings Plan - Basic</h3>
+                                <p class="ect-product-desc">Monthly savings product</p>
+                                <p class="ect-product-price">₦5,000/month</p>
+                                <button class="ect-btn-secondary" onclick="alert('Added to cart')">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div class="ect-product-card">
+                            <div class="ect-product-image" style="background: linear-gradient(135deg, #66cc66, #4caf50);">
+                                <span style="color: white; font-size: 2rem;">💰</span>
+                            </div>
+                            <div class="ect-product-info">
+                                <h3 class="ect-product-name">Investment Package</h3>
+                                <p class="ect-product-desc">High-yield investment product</p>
+                                <p class="ect-product-price">₦50,000</p>
+                                <button class="ect-btn-secondary" onclick="alert('Added to cart')">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div class="ect-product-card">
+                            <div class="ect-product-image" style="background: linear-gradient(135deg, #8cd98c, #66cc66);">
+                                <span style="color: white; font-size: 2rem;">🎁</span>
+                            </div>
+                            <div class="ect-product-info">
+                                <h3 class="ect-product-name">Premium Membership</h3>
+                                <p class="ect-product-desc">Exclusive member benefits</p>
+                                <p class="ect-product-price">₦10,000/year</p>
+                                <button class="ect-btn-secondary" onclick="alert('Added to cart')">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div class="ect-product-card">
+                            <div class="ect-product-image" style="background: linear-gradient(135deg, #b3e5b3, #8cd98c);">
+                                <span style="color: white; font-size: 2rem;">📚</span>
+                            </div>
+                            <div class="ect-product-info">
+                                <h3 class="ect-product-name">Training & Development</h3>
+                                <p class="ect-product-desc">Financial literacy course</p>
+                                <p class="ect-product-price">₦3,500</p>
+                                <button class="ect-btn-secondary" onclick="alert('Added to cart')">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="ect-view-panel" id="ect-view-profile-7k5m" data-view="profile" style="display: none;">
+                    <div class="ect-profile-container">
+                        <div class="ect-profile-header">
+                            <div class="ect-profile-avatar-large">
+                                <span id="profile-avatar-text">AM</span>
+                            </div>
+                            <div class="ect-profile-header-info">
+                                <h2 id="profile-display-name">Admin User</h2>
+                                <p id="profile-display-role">Administrator</p>
+                                <p id="profile-display-id" class="ect-profile-id">Member ID: EUCS001</p>
+                            </div>
+                            <button class="ect-btn-secondary" onclick="alert('Upload new profile photo')">Change Photo</button>
+                        </div>
+
+                        <div class="ect-profile-stats">
+                            <div class="ect-profile-stat">
+                                <span class="ect-stat-label">Total Contributions</span>
+                                <span class="ect-stat-value">₦500,000</span>
+                            </div>
+                            <div class="ect-profile-stat">
+                                <span class="ect-stat-label">Join Date</span>
+                                <span class="ect-stat-value">15 Jan 2024</span>
+                            </div>
+                            <div class="ect-profile-stat">
+                                <span class="ect-stat-label">Status</span>
+                                <span class="ect-stat-value" style="color: #4caf50;">Active</span>
+                            </div>
+                        </div>
+
+                        <div class="ect-profile-details">
+                            <div class="ect-profile-section">
+                                <h3>Contact Information</h3>
+                                <p><strong>Email:</strong> <span id="profile-email">admin@eucs.coop</span></p>
+                                <p><strong>Phone:</strong> <span id="profile-phone-display">+2348012345678</span></p>
+                                <p><strong>Address:</strong> <span id="profile-address-display">Elugwu, Umuoshie</span></p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>

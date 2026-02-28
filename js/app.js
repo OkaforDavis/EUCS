@@ -203,6 +203,7 @@ class ECTApplication {
         this.setupDashboardListeners();
         this.setupNavigationListeners();
         this.setupSearchListener();
+        this.setupSettingsTabsListener();
         
         // Check for existing session
         this.checkSession();
@@ -238,6 +239,16 @@ class ECTApplication {
         const mobileMenuBtn = document.getElementById('ect-btn-mobile-menu-2k5w');
         if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', () => this.toggleMobileMenu());
+        }
+
+        // ===== SIDEBAR CLICK OUTSIDE TO CLOSE (MOBILE FIX) =====
+        const sidebar = document.querySelector('.ect-sidebar-nav');
+        if (sidebar) {
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
         }
 
         // User menu dropdown
@@ -304,6 +315,26 @@ class ECTApplication {
         if (searchInput) {
             searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
         }
+    }
+
+    setupSettingsTabsListener() {
+        const tabButtons = document.querySelectorAll('.ect-tab-btn');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tabName = e.target.dataset.tab;
+                
+                // Remove active from all buttons and contents
+                document.querySelectorAll('.ect-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.ect-tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active to clicked button and corresponding content
+                e.target.classList.add('active');
+                const tabContent = document.getElementById(`tab-${tabName}`);
+                if (tabContent) {
+                    tabContent.classList.add('active');
+                }
+            });
+        });
     }
 
     handleSearch(query) {
@@ -457,6 +488,12 @@ class ECTApplication {
     }
 
     switchView(viewName) {
+        // Close mobile sidebar when view is switched
+        const sidebar = document.querySelector('.ect-sidebar-nav');
+        if (sidebar) {
+            sidebar.classList.remove('active');
+        }
+
         // Update navigation
         document.querySelectorAll('.ect-nav-item').forEach(item => {
             item.classList.remove('active');
@@ -471,8 +508,22 @@ class ECTApplication {
             panel.style.display = 'none';
         });
         
+        // Map view names to their IDs
+        const viewIds = {
+            'overview': 'ect-view-overview-2m8k',
+            'contributions': 'ect-view-contributions-7m4k',
+            'loans': 'ect-view-loans-3p8w',
+            'withdrawals': 'ect-view-withdrawals-6k2m',
+            'members': 'ect-view-members-9w5p',
+            'chat': 'ect-view-chat-2k7t',
+            'reports': 'ect-view-reports-5m3k',
+            'products': 'ect-view-products-1k9m',
+            'profile': 'ect-view-profile-7k5m',
+            'settings': 'ect-view-settings-8p6w'
+        };
+        
         // Show selected view
-        const activePanel = document.getElementById(`ect-view-${viewName}-${viewName === 'overview' ? '2m8k' : viewName === 'contributions' ? '7m4k' : viewName === 'loans' ? '3p8w' : viewName === 'withdrawals' ? '6k2m' : viewName === 'members' ? '9w5p' : viewName === 'chat' ? '2k7t' : viewName === 'reports' ? '5m3k' : '8p6w'}`);
+        const activePanel = document.getElementById(viewIds[viewName]);
         
         if (activePanel) {
             activePanel.classList.add('active');
@@ -493,7 +544,9 @@ class ECTApplication {
                 'members': 'Member Directory',
                 'chat': 'Live Chat',
                 'reports': 'Reports & Analytics',
-                'settings': 'System Settings'
+                'products': 'Member Store',
+                'profile': 'My Profile',
+                'settings': 'Settings & Account'
             };
             pageTitle.textContent = titles[viewName] || 'Dashboard';
         }
