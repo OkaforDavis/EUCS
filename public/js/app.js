@@ -268,6 +268,26 @@ class ECTApplication {
                     userMenu.classList.remove('active');
                 }
             });
+
+            // Profile dropdown menu item handlers
+            const dropdownItems = userMenu.querySelectorAll('.ect-dropdown-item');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const text = item.textContent.trim();
+                    
+                    // Close dropdown
+                    userMenu.classList.remove('active');
+                    
+                    if (text === 'My Profile') {
+                        this.switchView('profile');
+                    } else if (text === 'Account Settings') {
+                        this.switchView('settings');
+                    } else if (text === 'Logout') {
+                        this.logout();
+                    }
+                });
+            });
         }
 
         // Quick action buttons
