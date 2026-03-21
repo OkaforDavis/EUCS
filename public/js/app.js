@@ -831,6 +831,9 @@ class ECTApplication {
             case 'members':
                 this.loadMembersView(container);
                 break;
+            case 'products':
+                this.loadProductsView(container);
+                break;
             case 'chat':
                 this.loadChatView(container);
                 break;
@@ -970,6 +973,88 @@ class ECTApplication {
                     </div>
                 `).join('')}
             </div>
+        `;
+    }
+
+    loadProductsView(container) {
+        const products = ProductsDB.getProducts();
+        const myProducts = this.currentUser ? ProductsDB.getMyProducts(this.currentUser.userId) : [];
+        
+        container.innerHTML = `
+            <div class="ect-view-header">
+                <h3>Farm Products Marketplace</h3>
+                <button class="ect-btn-primary" onclick="ECTApp.showProductModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px;margin-right:8px">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+                    </svg>
+                    List Product
+                </button>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <h4>My Products (${myProducts.length})</h4>
+                ${myProducts.length === 0 ? 
+                    '<p style="color:#6b7280">You haven\'t listed any products yet. Click "List Product" to add your farm products.</p>' :
+                    `<div class="ect-products-grid">
+                        ${myProducts.map(p => `
+                            <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; cursor: pointer;">
+                                <div style="height: 150px; background: #f3f4f6; border-radius: 6px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6-6 6 6M12 3v12m0 6h.01"/></svg>
+                                </div>
+                                <h5 style="margin: 0 0 8px 0; font-weight: 600;">${p.name}</h5>
+                                <p style="margin: 4px 0; color: #6b7280; font-size: 14px;"><strong>Type:</strong> ${p.type}</p>
+                                <p style="margin: 4px 0; color: #6b7280; font-size: 14px;"><strong>Qty:</strong> ${p.quantity} ${p.unit}</p>
+                                <p style="margin: 4px 0; font-weight: 600; color: #6BA368;">₦${p.price.toLocaleString()}</p>
+                                <p style="margin: 8px 0 0 0; color: #10b981; font-size: 13px;">📍 ${p.status}</p>
+                                <div style="margin-top: 12px; display: flex; gap: 8px;">
+                                    <button onclick="ECTApp.showToast('Edit product: ${p.name}', 'info')" style="flex: 1; padding: 6px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Edit</button>
+                                    <button onclick="ProductsDB.deleteProduct('${p.id}'); ECTApp.switchView('products');" style="flex: 1; padding: 6px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Delete</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>`
+                }
+            </div>
+            
+            <hr style="margin: 2rem 0; border: none; border-top: 2px solid #e5e7eb;">
+            
+            <h4>All Products (${products.length})</h4>
+            ${products.length === 0 ? 
+                '<p style="color:#6b7280">No products available yet. Be the first to list your farm products!</p>' :
+                `<div class="ect-products-grid">
+                    ${products.map(p => `
+                        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; cursor: pointer;">
+                            <div style="height: 150px; background: #f3f4f6; border-radius: 6px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 14px;">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6-6 6 6M12 3v12m0 6h.01"/></svg>
+                            </div>
+                            <h5 style="margin: 0 0 8px 0; font-weight: 600;">${p.name}</h5>
+                            <p style="margin: 4px 0; color: #6b7280; font-size: 14px;"><strong>Type:</strong> ${p.type}</p>
+                            <p style="margin: 4px 0; color: #6b7280; font-size: 14px;"><strong>Qty:</strong> ${p.quantity} ${p.unit}</p>
+                            <p style="margin: 4px 0; font-weight: 600; color: #6BA368;">₦${p.price.toLocaleString()}</p>
+                            <p style="margin: 4px 0; color: #6b7280; font-size: 13px;">By: <strong>${p.sellerName}</strong></p>
+                            <div style="margin-top: 12px;">
+                                <button onclick="ECTApp.showOrderModal('${p.id}', '${p.name}', ${p.price})" style="width: 100%; padding: 8px; background: #6BA368; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 500;">
+                                    Place Order
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>`
+            }
+            
+            <style>
+                .ect-products-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                    gap: 16px;
+                    margin-top: 16px;
+                }
+                @media (max-width: 768px) {
+                    .ect-products-grid {
+                        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                    }
+                }
+            </style>
         `;
     }
 
@@ -1187,6 +1272,160 @@ class ECTApplication {
         if (this.currentView === 'withdrawals') {
             this.switchView('withdrawals');
         }
+    }
+
+    showProductModal() {
+        const categories = ['Vegetables', 'Tubers', 'Grains', 'Fruits', 'Livestock', 'Spices', 'Herbs', 'Other'];
+        const units = ['kg', 'g', 'liters', 'pieces', 'bundles', 'bags', 'boxes', 'tons'];
+        
+        const modal = this.createModal('List Farm Product', `
+            <div class="ect-form-group">
+                <label>Product Name</label>
+                <input type="text" id="product-name" class="ect-form-input" placeholder="e.g., Fresh Tomatoes" />
+            </div>
+            <div class="ect-form-group">
+                <label>Category</label>
+                <select id="product-type" class="ect-form-input">
+                    <option value="">-- Select Category --</option>
+                    ${categories.map(cat => `<option value="${cat}">${cat}</option>`).join('')}
+                </select>
+            </div>
+            <div class="ect-form-group">
+                <label>Quantity</label>
+                <input type="number" id="product-quantity" class="ect-form-input" placeholder="100" />
+            </div>
+            <div class="ect-form-group">
+                <label>Unit</label>
+                <select id="product-unit" class="ect-form-input">
+                    <option value="">-- Select Unit --</option>
+                    ${units.map(unit => `<option value="${unit}">${unit}</option>`).join('')}
+                </select>
+            </div>
+            <div class="ect-form-group">
+                <label>Price per Unit (₦)</label>
+                <input type="number" id="product-price" class="ect-form-input" placeholder="500" />
+            </div>
+            <div class="ect-form-group">
+                <label>Description</label>
+                <textarea id="product-description" class="ect-form-input" rows="3" placeholder="Describe your product..."></textarea>
+            </div>
+            <button class="ect-btn-primary" onclick="ECTApp.submitProduct()">List Product</button>
+        `);
+        document.body.appendChild(modal);
+    }
+
+    submitProduct() {
+        const name = document.getElementById('product-name').value;
+        const type = document.getElementById('product-type').value;
+        const quantity = document.getElementById('product-quantity').value;
+        const unit = document.getElementById('product-unit').value;
+        const price = document.getElementById('product-price').value;
+        const description = document.getElementById('product-description').value;
+        
+        if (!name || !type || !quantity || !unit || !price) {
+            this.showToast('Please fill all required fields', 'error');
+            return;
+        }
+        
+        ProductsDB.addProduct({
+            name: name,
+            type: type,
+            quantity: parseInt(quantity),
+            unit: unit,
+            price: parseFloat(price),
+            description: description,
+            sellerId: this.currentUser.userId,
+            sellerName: `${this.currentUser.firstName} ${this.currentUser.lastName}`,
+            memberId: this.currentUser.memberId
+        });
+        
+        this.closeModal();
+        this.showToast('Product listed successfully!', 'success');
+        
+        if (this.currentView === 'products') {
+            this.switchView('products');
+        }
+    }
+
+    showOrderModal(productId, productName, price) {
+        const products = ProductsDB.getProducts();
+        const product = products.find(p => p.id === productId);
+        
+        if (!product) {
+            this.showToast('Product not found', 'error');
+            return;
+        }
+        
+        const modal = this.createModal('Place Order', `
+            <div class="ect-form-group">
+                <label>Product</label>
+                <input type="text" class="ect-form-input" value="${productName}" readonly />
+            </div>
+            <div class="ect-form-group">
+                <label>Available Quantity: ${product.quantity} ${product.unit}</label>
+                <input type="number" id="order-quantity" class="ect-form-input" placeholder="1" min="1" max="${product.quantity}" />
+            </div>
+            <div class="ect-form-group">
+                <label>Price per Unit (₦)</label>
+                <input type="number" class="ect-form-input" value="${price}" readonly />
+            </div>
+            <div class="ect-form-group">
+                <label>Total Price (₦)</label>
+                <input type="number" id="order-total" class="ect-form-input" value="0" readonly />
+            </div>
+            <div class="ect-form-group">
+                <label>Delivery Address</label>
+                <textarea id="order-address" class="ect-form-input" rows="2" placeholder="Enter delivery address..."></textarea>
+            </div>
+            <button class="ect-btn-primary" onclick="ECTApp.submitOrder('${productId}', ${price})">Place Order</button>
+        `);
+        document.body.appendChild(modal);
+        
+        // Update total price on quantity change
+        const qtyInput = document.getElementById('order-quantity');
+        const totalInput = document.getElementById('order-total');
+        if (qtyInput) {
+            qtyInput.addEventListener('change', () => {
+                totalInput.value = (qtyInput.value * price).toLocaleString();
+            });
+            qtyInput.addEventListener('input', () => {
+                totalInput.value = (qtyInput.value * price).toLocaleString();
+            });
+        }
+    }
+
+    submitOrder(productId, price) {
+        const quantity = document.getElementById('order-quantity').value;
+        const address = document.getElementById('order-address').value;
+        
+        if (!quantity || quantity <= 0 || !address) {
+            this.showToast('Please fill all fields', 'error');
+            return;
+        }
+        
+        const products = ProductsDB.getProducts();
+        const product = products.find(p => p.id === productId);
+        
+        if (!product) {
+            this.showToast('Product not found', 'error');
+            return;
+        }
+        
+        ProductsDB.addOrder({
+            productId: productId,
+            productName: product.name,
+            quantity: parseInt(quantity),
+            unit: product.unit,
+            totalPrice: parseFloat(quantity) * price,
+            buyerId: this.currentUser.userId,
+            buyerName: `${this.currentUser.firstName} ${this.currentUser.lastName}`,
+            sellerId: product.sellerId,
+            sellerName: product.sellerName,
+            deliveryAddress: address
+        });
+        
+        this.closeModal();
+        this.showToast('Order placed successfully!', 'success');
     }
 
     showMemberModal() {
